@@ -1,7 +1,6 @@
 package pt.machines.manager.core;
 
 import pt.machines.manager.core.storage.Memory;
-import pt.machines.manager.core.ui.Menu;
 import pt.machines.manager.exceptions.FileLoadException;
 import pt.machines.manager.files.ResourceFileManager;
 import pt.machines.manager.objects.Machine;
@@ -13,12 +12,20 @@ import java.net.URISyntaxException;
 
 import static java.util.Objects.isNull;
 
+/**
+ * The Application class represents an application that manages the machines.
+ */
 public class Application {
 
     @SuppressWarnings("SpellCheckingInspection")
     private final static String MAIN_CONFIG = "maquinas.txt";
-    private final Menu menu = new Menu();
 
+    /**
+     * Initializes the application by loading configuration from a resource file,
+     * storing the data in memory, and printing the loaded machines.
+     *
+     * @throws RuntimeException If there is an error while initializing.
+     */
     private void init() {
         try {
             String[] lines = ResourceFileManager.loadResource(MAIN_CONFIG);
@@ -41,6 +48,10 @@ public class Application {
 
     /**
      * 4. Student 1
+     * </p>
+     * Prints the information of a machine.
+     *
+     * @param code The code of the machine.
      */
     private void printMachineInformation(String code) {
         Machine machine = Memory.select(code);
@@ -55,6 +66,11 @@ public class Application {
 
     /**
      * 4. Student 2
+     * </p>
+     * Updates the working hours of a machine.
+     *
+     * @param code         The code of the machine.
+     * @param workingHours The new working hours of the machine.
      */
     private void updateMachineWorkingHours(String code, int workingHours) {
         Machine machine = Memory.select(code);
@@ -67,18 +83,26 @@ public class Application {
 
     /**
      * 4. Student 3
+     * </p>
+     * Removes a machine from memory based on its code.
+     *
+     * @param code The code of the machine.
      */
-    private String removeMachine(String code) {
+    private void removeMachine(String code) {
         boolean result = Memory.remove(code);
 
         if (result)
-            return "Machine " + code + " has been removed!";
+            System.out.println("Machine " + code + " has been removed!");
 
-        return "Machine not found!";
+        System.out.println("Machine not found!");
     }
 
     /**
      * 4. Student 4
+     * </p>
+     * Saves the state of all machines in memory by storing their information in a resource file.
+     * Each machine's information is converted to a string representation and stored in the file.
+     * If there are any errors while saving the state, a RuntimeException is thrown.
      */
     private void saveState() {
         Machine[] machines = Memory.getAll();
@@ -95,6 +119,9 @@ public class Application {
         }
     }
 
+    /**
+     * This method displays a menu of options for managing machines.
+     */
     public void menu() {
         int option = 0;
 
@@ -129,13 +156,19 @@ public class Application {
 
                         break;
                     case 3:
+                        System.out.print("Code > ");
+                        code = reader.readLine();
+                        this.removeMachine(code);
 
                         break;
                     case 4:
+                        this.saveState();
                 }
 
-                System.out.println("> Press some key to continue");
-                reader.readLine();
+                if (option != 4) {
+                    System.out.println("> Press some key to continue");
+                    reader.readLine();
+                }
             } catch (Exception e) {
                 System.out.println("Please enter a valid number.");
             }

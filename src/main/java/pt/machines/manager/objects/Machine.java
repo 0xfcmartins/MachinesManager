@@ -1,5 +1,8 @@
 package pt.machines.manager.objects;
 
+/**
+ * The Machine class represents a machine with a unique code and a number of working hours.
+ */
 public class Machine {
     String code;
     int workingHours;
