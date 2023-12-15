@@ -24,21 +24,21 @@ public class Memoria {
     /**
      * Adiciona um novo objeto da classe Maquina à lista machines na memória.
      *
-     * @param code         O código da máquina.
-     * @param workingHours A quantidade de horas de trabalho da máquina.
+     * @param codigo         O código da máquina.
+     * @param horasDeTrabalho A quantidade de horas de trabalho da máquina.
      */
-    public static void armazenar(String code, int workingHours) {
-        machines.add(new Maquina(code, workingHours));
+    public static void armazenar(String codigo, int horasDeTrabalho) {
+        machines.add(new Maquina(codigo, horasDeTrabalho));
     }
     /**
      * Seleciona um objeto da classe Maquina da lista machines na memória com base no seu código.
      *
-     * @param code O código da máquina.
+     * @param codigo O código da máquina.
      * @return O objeto Maquina selecionado, ou null se não for encontrado na lista.
      */
-    public static Maquina selecionaAMaquinaPorCodigo(String code) {
+    public static Maquina selecionaAMaquinaPorCodigo(String codigo) {
         for (Maquina machine : machines) {
-            if (machine.getCodigo().equals(code))
+            if (machine.getCodigo().equals(codigo))
                 return machine;
         }
         return null;
