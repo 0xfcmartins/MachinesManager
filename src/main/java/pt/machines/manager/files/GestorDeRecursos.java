@@ -19,7 +19,7 @@ import static java.util.Objects.isNull;
  * It provides a static method {@code loadResource} that takes a resource name as input and returns the content of the
  * resource file.
  */
-public class ResourceFileManager {
+public class GestorDeRecursos {
 
     private static final String SLASH = "/";
     private static final String NEWLINE = "\n";
@@ -43,7 +43,7 @@ public class ResourceFileManager {
      * @return the content of the resource file as an array of strings
      * @throws Exception if an error occurs while loading the resource file
      */
-    public static String[] loadResource(String resourceName) throws Exception {
+    public static String[] carregar(String resourceName) throws Exception {
         validateResourceName(resourceName);
         URL fileUrl = getResourceURL(resourceName);
         validateFileUrl(fileUrl, resourceName);
@@ -58,7 +58,7 @@ public class ResourceFileManager {
      * @return the URL of the resource file
      */
     private static URL getResourceURL(String resourceName) {
-        return ResourceFileManager.class.getResource(SLASH + resourceName);
+        return GestorDeRecursos.class.getResource(SLASH + resourceName);
     }
 
     /**
@@ -93,7 +93,7 @@ public class ResourceFileManager {
      * @throws FileLoadException  if the resource name is null or the file URL is null
      * @throws URISyntaxException if the URL of the file has an invalid syntax
      */
-    public static void store(String resourcePath, String[] linesToWrite) throws IOException, FileLoadException, URISyntaxException {
+    public static void guardaAsMaquinasNoFicheiro(String resourcePath, String[] linesToWrite) throws IOException, FileLoadException, URISyntaxException {
         validateResourceName(resourcePath);
         URL fileUrl = getResourceURL(resourcePath);
         validateFileUrl(fileUrl, resourcePath);

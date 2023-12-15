@@ -3,20 +3,20 @@ package pt.machines.manager.objects;
 /**
  * The Machine class represents a machine with a unique code and a number of working hours.
  */
-public class Machine {
+public class Maquina {
     String code;
     int workingHours;
 
-    public Machine(String code, int workingHours) {
+    public Maquina(String code, int workingHours) {
         this.code = code;
         this.workingHours = workingHours;
     }
 
-    public void setWorkingHours(int workingHours) {
+    public void defineHorasDeTrabalho(int workingHours) {
         this.workingHours = workingHours;
     }
 
-    public String getCode() {
+    public String getCodigo() {
         return this.code;
     }
 
